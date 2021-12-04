@@ -7,6 +7,8 @@ import com.test.crudApi.model.entities.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.stream.Collectors;
+
 @Service
 public class DataService {
 
@@ -22,6 +24,8 @@ public class DataService {
 
         Product laptop = new Product("Dell Inspiron", "Dell Laptop i7", 900.00);
         laptop.setCategory(techCat);
+        laptop.getRefs().add("AAA");
+        laptop.getRefs().add("BBB");
         Product ps5 = new Product("Playstation 5", "Playstation 5 2To", 500.00);
         ps5.setCategory(techCat);
         Product printer = new Product("Printer ", "Printer Samsung 5000", 300.00);
@@ -40,6 +44,15 @@ public class DataService {
         productRepository.save(printer);
         productRepository.save(ball);
         productRepository.save(gloves);
+
+        Product pTest = new Product("Test ", "Mon test", 3746.00);
+        pTest.setCategory(techCat);
+        productRepository.save(pTest);
+
+//        sportCat.getProducts().add(pTest);
+
+//        System.out.println(techCat.getProducts());
+//        System.out.println(categoryRepository.findAll().stream().map(c -> c.getProducts()).collect(Collectors.toList()));
     }
 
 }

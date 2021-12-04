@@ -5,6 +5,8 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Data
@@ -15,6 +17,8 @@ public class Product implements Serializable {
     private String name;
     private String description;
     private Double price;
+    @ElementCollection
+    private List<String> refs = new ArrayList<>();
     @ManyToOne
     private Category category;
 
